@@ -43,13 +43,13 @@ export const fetchSmurfs = () => dispatch => {
 }
 
 export const saveSmurf = smurfs => dispatch => {
-  dispatch: ({type: SAVING_SMURFS})
+  dispatch ({type: SAVING_SMURFS})
   axios
   .post(`http://localhost:3333/smurfs`, smurfs)
   .then(response => {
     dispatch({
       type: SMURF_SAVED,
-      payload: response.date
+      payload: response.data
     })
   })
   .catch(error => {

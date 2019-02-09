@@ -33,7 +33,7 @@ const mapStateToProps = state => {
     return {
         smurfs: state.smurfs,
         fetchingSmurfs: state.fetchingSmurfs,
-        addingSmurf: state.addingSmurfs
+        addingSmurf: state.addingSmurf
     }
 }
 
