@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {fetchSmurfs} from '../actions/index';
-import { Agent } from 'http';
+
 
 class Smurfs extends React.Component {
 
@@ -16,7 +16,7 @@ class Smurfs extends React.Component {
         return (
             <div>
                 {this.props.smurfs.map(smurf => (
-                    <ul key={smurf.id}>
+                    <ul key={smurf.name}>
                         Name:{smurf.name},
                         Age: {smurf.age},
                         Height:{smurf.height}
@@ -32,7 +32,8 @@ const mapStateToProps = state => {
     console.log(state)
     return {
         smurfs: state.smurfs,
-        fetchingSmurfs: state.fetchingSmurfs
+        fetchingSmurfs: state.fetchingSmurfs,
+        addingSmurf: state.addingSmurfs
     }
 }
 

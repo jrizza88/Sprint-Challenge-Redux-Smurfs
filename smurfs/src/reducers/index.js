@@ -5,7 +5,9 @@
 import {
   FETCHING_SMURFS, 
   SMURFS_FETCHED, 
-  FETCHING_SMURFS_ERROR,
+  ERROR,
+  SAVING_SMURFS,
+  SMURF_SAVED
 } from '../actions/index';
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
@@ -13,7 +15,7 @@ import {
 const initialState = {
   smurfs: [],
   fetchingSmurfs: false,
-  // addingSmurf: false,
+  addingSmurf: false,
   // updatingSmurf: false,
   // deletingSmurf: false,
   error: null
@@ -32,8 +34,12 @@ switch (action.type){
     return {...state, fetchingSmurfs: true, smurfs: [], error: ''}
   case SMURFS_FETCHED: 
     return {...state, fetchingSmurfs: false, smurfs: action.payload, error: ''}
-  case FETCHING_SMURFS_ERROR: 
-    return {...state, fetchingSmurfs: false, smurfs: [], error: action.payload}
+  case ERROR: 
+    return {...state, fetchingSmurfs: false, addingSmurf: false, smurfs: [], error: action.payload}
+  case SAVING_SMURFS:
+    return {...state, addingSmurf: true, smurfs: action.payload, error: ''}
+  case SMURF_SAVED: 
+    return {...state, addingSmurf: false, smurfs: action.payload, error:''}
   default: 
   return state;
   }

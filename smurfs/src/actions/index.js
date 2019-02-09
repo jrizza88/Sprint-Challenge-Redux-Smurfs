@@ -7,7 +7,9 @@ import axios from 'axios';
 
 export const FETCHING_SMURFS = 'FETCHING_SMURFS';
 export const SMURFS_FETCHED = 'SMURFS_FETCHED';
-export const FETCHING_SMURFS_ERROR = 'FETCHING_SMURFS_ERROR';
+export const SAVING_SMURFS = 'SAVING_SMURFS';
+export const SMURF_SAVED = 'SMURF_SAVED';
+export const ERROR = 'ERROR';
 
 /*
   For this project you'll need at least 2 action creators for the main portion,
@@ -34,8 +36,26 @@ export const fetchSmurfs = () => dispatch => {
   })
   .catch(error => {
     dispatch({
-      type: FETCHING_SMURFS_ERROR,
-      payload: 'Fetching smurgs error'
+      type: ERROR,
+      payload: 'SMURF ERROR!!'
+    });
+  });
+}
+
+export const saveSmurf = smurfs => dispatch => {
+  dispatch: ({type: SAVING_SMURFS})
+  axios
+  .post(`http://localhost:3333/smurfs`, smurfs)
+  .then(response => {
+    dispatch({
+      type: SMURF_SAVED,
+      payload: response.date
+    })
+  })
+  .catch(error => {
+    dispatch({
+      type: ERROR,
+      payload: 'SMURF ERROR!!'
     });
   });
 }
